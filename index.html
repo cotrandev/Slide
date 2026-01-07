@@ -1,0 +1,399 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Materials</title>
+  <style>
+    :root{
+      --bg:#0b0f19;
+      --card:#111827;
+      --card2:#0f172a;
+      --text:#e5e7eb;
+      --muted:#9ca3af;
+      --line:#1f2937;
+      --chip:#0b1220;
+      --chipLine:#263244;
+      --accent:#60a5fa;
+      --accent2:#34d399;
+      --shadow: 0 10px 30px rgba(0,0,0,.35);
+      --radius:16px;
+      --radius2:12px;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+      background: radial-gradient(1200px 600px at 20% -10%, rgba(96,165,250,.25), transparent 55%),
+                  radial-gradient(900px 500px at 110% 0%, rgba(52,211,153,.18), transparent 50%),
+                  var(--bg);
+      color:var(--text);
+    }
+    .wrap{max-width:1100px;margin:0 auto;padding:28px 18px 40px}
+    header{
+      display:flex;align-items:flex-start;justify-content:space-between;gap:16px;flex-wrap:wrap;
+      margin-bottom:18px;
+    }
+    .title{
+      display:flex;flex-direction:column;gap:6px;
+    }
+    h1{margin:0;font-size:24px;letter-spacing:.2px}
+    .sub{color:var(--muted);font-size:14px}
+    .panel{
+      background: linear-gradient(180deg, rgba(255,255,255,.03), transparent 45%), var(--card2);
+      border:1px solid var(--line);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding:14px;
+    }
+    .controls{
+      display:grid;
+      grid-template-columns: 1.4fr .7fr .7fr .7fr;
+      gap:10px;
+      align-items:center;
+    }
+    @media (max-width:900px){
+      .controls{grid-template-columns:1fr 1fr; }
+    }
+    @media (max-width:520px){
+      .controls{grid-template-columns:1fr; }
+    }
+    .input, select{
+      width:100%;
+      background: rgba(255,255,255,.03);
+      border:1px solid var(--line);
+      color:var(--text);
+      padding:10px 12px;
+      border-radius: 12px;
+      outline:none;
+    }
+    .input:focus, select:focus{border-color: rgba(96,165,250,.6); box-shadow: 0 0 0 3px rgba(96,165,250,.12)}
+    .metaRow{
+      display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap;
+      margin-top:12px;
+      color:var(--muted);
+      font-size:13px;
+    }
+    .chips{display:flex;flex-wrap:wrap;gap:8px}
+    .chip{
+      border:1px solid var(--chipLine);
+      background: rgba(11,18,32,.7);
+      padding:6px 10px;
+      border-radius:999px;
+      cursor:pointer;
+      user-select:none;
+      display:inline-flex;align-items:center;gap:8px;
+      transition:.15s transform, .15s border-color;
+    }
+    .chip:hover{transform: translateY(-1px); border-color: rgba(96,165,250,.5)}
+    .chip.active{border-color: rgba(52,211,153,.7); box-shadow: 0 0 0 3px rgba(52,211,153,.10)}
+    .chip .dot{width:8px;height:8px;border-radius:50%;}
+    .grid{
+      margin-top:14px;
+      display:grid;
+      grid-template-columns: repeat(3, minmax(0,1fr));
+      gap:12px;
+    }
+    @media (max-width:980px){ .grid{grid-template-columns: repeat(2, minmax(0,1fr));} }
+    @media (max-width:620px){ .grid{grid-template-columns: 1fr;} }
+
+    .card{
+      background: linear-gradient(180deg, rgba(255,255,255,.03), transparent 45%), var(--card);
+      border:1px solid var(--line);
+      border-radius: var(--radius);
+      padding:14px;
+      box-shadow: 0 12px 28px rgba(0,0,0,.25);
+      display:flex;flex-direction:column;gap:10px;
+      min-height:140px;
+    }
+    .cardTop{
+      display:flex;align-items:flex-start;justify-content:space-between;gap:10px;
+    }
+    .badge{
+      font-size:12px;
+      padding:6px 10px;
+      border-radius:999px;
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.03);
+      color: var(--muted);
+      white-space:nowrap;
+    }
+    .badge.slide{border-color: rgba(96,165,250,.35); color: rgba(147,197,253,.95)}
+    .badge.video{border-color: rgba(52,211,153,.35); color: rgba(110,231,183,.95)}
+    .badge.ebook{border-color: rgba(244,114,182,.35); color: rgba(251,182,206,.95)}
+    .name{
+      font-weight:650;
+      letter-spacing:.2px;
+      line-height:1.25;
+    }
+    .muted{color:var(--muted);font-size:13px}
+    .actions{
+      margin-top:auto;
+      display:flex;gap:10px;flex-wrap:wrap;
+    }
+    .btn{
+      display:inline-flex;align-items:center;justify-content:center;
+      gap:8px;
+      padding:9px 12px;
+      border-radius: 12px;
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.03);
+      color:var(--text);
+      text-decoration:none;
+      transition:.15s transform, .15s border-color, .15s background;
+    }
+    .btn:hover{transform:translateY(-1px); border-color: rgba(96,165,250,.55); background: rgba(96,165,250,.07)}
+    .btn.primary{border-color: rgba(96,165,250,.55); background: rgba(96,165,250,.10)}
+    .btn.small{padding:7px 10px; border-radius: 10px; font-size:13px}
+    .empty{
+      margin-top:14px;
+      padding:20px;
+      border:1px dashed var(--line);
+      border-radius: var(--radius);
+      color: var(--muted);
+      text-align:center;
+    }
+    .footer{
+      margin-top:18px;
+      color: var(--muted);
+      font-size:12px;
+      text-align:center;
+      opacity:.9;
+    }
+    code.kbd{
+      background: rgba(255,255,255,.06);
+      border:1px solid var(--line);
+      padding:2px 6px;
+      border-radius:8px;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+      font-size:12px;
+      color:#d1d5db;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div class="title">
+        <h1>📦 Materials</h1>
+        <div class="sub">Danh sách Slide / Ebook / Video (Canva) — có tìm kiếm, lọc, sắp xếp.</div>
+      </div>
+      <div class="sub">Tip: nhấn <code class="kbd">/</code> để focus ô Search</div>
+    </header>
+
+    <section class="panel">
+      <div class="controls">
+        <input id="q" class="input" placeholder="Search… (vd: 'slide', 'video', 'ebook', '#12')" />
+        <select id="type">
+          <option value="all">All types</option>
+          <option value="Slide">Slides</option>
+          <option value="Ebook">Ebooks</option>
+          <option value="Video">Videos</option>
+        </select>
+        <select id="sort">
+          <option value="id-asc">Sort: # ↑</option>
+          <option value="id-desc">Sort: # ↓</option>
+          <option value="type-asc">Sort: Type A→Z</option>
+          <option value="type-desc">Sort: Type Z→A</option>
+        </select>
+        <select id="view">
+          <option value="grid">View: Grid</option>
+          <option value="list">View: List</option>
+        </select>
+      </div>
+
+      <div class="metaRow">
+        <div class="chips" id="chips"></div>
+        <div><span id="count"></span></div>
+      </div>
+    </section>
+
+    <section id="grid" class="grid" aria-live="polite"></section>
+    <div id="empty" class="empty" style="display:none;">Không có kết quả phù hợp.</div>
+
+    <div class="footer">
+      Built for GitHub Pages • Data is in JS array (edit easily)
+    </div>
+  </div>
+
+  <script>
+    // ====== DATA (edit here) ======
+    const items = [
+      { id: 1,  type: "Slide", url: "https://www.canva.com/design/DAGVIGzey9w/J2NdlzmvCWPpFupFZ5gWCA/edit" },
+      { id: 2,  type: "Slide", url: "https://www.canva.com/design/DAGK-wT9aLo/v183RtbspaV05e0x-NXmEA/edit" },
+      { id: 3,  type: "Slide", url: "https://www.canva.com/design/DAF-wdJG0sM/-FSdp9N_o9tPcDTzyGjcEw/edit" },
+      { id: 4,  type: "Slide", url: "https://www.canva.com/design/DAGCujArk-M/F1fGwbBkKt0rPAyN0Phobw/edit" },
+      { id: 5,  type: "Slide", url: "https://www.canva.com/design/DAGhYsdZTj8/uFGBWfZovfcAtgh8B3EFEA/edit" },
+      { id: 6,  type: "Ebook", url: "https://www.canva.com/design/DAG13R_eQTU/9FPq85X9nGGG_EIr9teLkA/edit" },
+      { id: 7,  type: "Slide", url: "https://www.canva.com/design/DAG1wSVRcMo/lojerH3f7s9jSKLJJ8_z2A/edit" },
+      { id: 8,  type: "Slide", url: "https://www.canva.com/design/DAG1noY8LHM/DaFRdHEosGjX4b7T-kGfMA/edit" },
+      { id: 9,  type: "Slide", url: "https://www.canva.com/design/DAG2h-eyFQs/Vm8r5JspqsnihyQv9cTb4A/edit" },
+      { id: 10, type: "Slide", url: "https://www.canva.com/design/DAG6ayTfocE/mTRLDbE-AOUI3DOB6nC2Xg/edit" },
+      { id: 11, type: "Slide", url: "https://www.canva.com/design/DAG5xwDEJKk/zJdJnDntFUjOdvQqUIkPqQ/edit" },
+      { id: 12, type: "Video", url: "https://www.canva.com/design/DAG7dFbD-rs/pJ1GiZeenmT0ysxemFtTJQ/edit" },
+      { id: 13, type: "Video", url: "https://www.canva.com/design/DAG7sGeLg5A/umnBo4mCtPTYVOs6Ol32cg/edit" },
+      { id: 14, type: "Video", url: "https://www.canva.com/design/DAG7r3GIepk/OZ2EEDtdiEQ8HzfvyGNeAg/edit" },
+      { id: 15, type: "Video", url: "https://www.canva.com/design/DAG7rQWP8V4/2Bmy6LIA2v_MutcOnegbsQ/edit" },
+      { id: 16, type: "Video", url: "https://www.canva.com/design/DAG7uSAyRu4/Vxok871pZXo30WPT84KmJA/edit" },
+      { id: 17, type: "Video", url: "https://www.canva.com/design/DAG7sqwS0Gc/ecHKHD5lDivwgoykOJKK1g/edit" },
+      { id: 18, type: "Video", url: "https://www.canva.com/design/DAG7rr21Gyk/SEeb4rvIV2nIECmMqrlEwQ/edit" },
+      { id: 19, type: "Video", url: "https://www.canva.com/design/DAG7uvycLrU/pOssirdF0zmsYoBQmsnvfA/edit" },
+      { id: 20, type: "Video", url: "https://www.canva.com/design/DAG7utY7YtE/UHyRS0uxjBfnxlcyzZIfzw/edit" },
+      { id: 21, type: "Video", url: "https://www.canva.com/design/DAG7u5iK_aQ/s1MilKlHlT2RP-o8y78K3Q/edit" },
+      { id: 22, type: "Video", url: "https://www.canva.com/design/DAG7vNxUkXE/W7BIckbhWA8CKco0IRtlIA/edit" },
+      { id: 23, type: "Video", url: "https://www.canva.com/design/DAG7pb3v8ds/KKBudl2FUUNIOZZ_Qe5JhA/edit" },
+      { id: 24, type: "Video", url: "https://www.canva.com/design/DAG7vjoLtJc/VVBCBNYVnAiOwo5N0ZpgdQ/edit" },
+      { id: 25, type: "Video", url: "https://www.canva.com/design/DAG7vXNZgeo/FFd5_4ZOTpDrEjiE40ydBg/edit" },
+      { id: 26, type: "Video", url: "https://www.canva.com/design/DAG7vQW0uR8/zjMUJ5IWS_3ivZawfQmQDA/edit" },
+      { id: 27, type: "Video", url: "https://www.canva.com/design/DAG7qflFTdE/hho5uoOZ53UW2MC0AbwU3A/edit" },
+      { id: 28, type: "Slide", url: "https://www.canva.com/design/DAG8hjn5CdA/yEy-nbdaRezKECzAR-B1pw/edit" },
+      { id: 29, type: "Slide", url: "https://www.canva.com/design/DAG6_DM9g5Q/a_0N_idOHC_QswcUFEvBLQ/edit" },
+    ];
+
+    // Optional: give nicer names (defaults to "Slide #1", etc.)
+    // const titles = { 1:"Intro", 2:"...", ... };
+
+    // ====== UI ======
+    const $ = (s) => document.querySelector(s);
+    const grid = $("#grid");
+    const empty = $("#empty");
+    const q = $("#q");
+    const type = $("#type");
+    const sort = $("#sort");
+    const view = $("#view");
+    const count = $("#count");
+    const chips = $("#chips");
+
+    const typeMeta = {
+      Slide: { label:"Slides", dot:"#60a5fa" },
+      Video: { label:"Videos", dot:"#34d399" },
+      Ebook: { label:"Ebooks", dot:"#fb7185" },
+    };
+
+    let activeChip = "all";
+
+    function buildChips(){
+      const totals = items.reduce((acc,it)=> (acc[it.type]=(acc[it.type]||0)+1, acc), {});
+      const all = items.length;
+
+      const mk = (key, label, dot, n) => {
+        const el = document.createElement("div");
+        el.className = "chip" + (activeChip===key ? " active":"");
+        el.dataset.key = key;
+        el.innerHTML = `<span class="dot" style="background:${dot}"></span>${label} <span style="color:var(--muted)">(${n})</span>`;
+        el.onclick = () => {
+          activeChip = key;
+          // sync dropdown too
+          type.value = (key==="all") ? "all" : key;
+          refresh();
+        };
+        return el;
+      };
+
+      chips.innerHTML = "";
+      chips.appendChild(mk("all","All","#9ca3af",all));
+      for(const t of ["Slide","Video","Ebook"]){
+        const n = totals[t] || 0;
+        chips.appendChild(mk(t, typeMeta[t].label, typeMeta[t].dot, n));
+      }
+    }
+
+    function applyFilters(list){
+      const query = q.value.trim().toLowerCase();
+      const t = type.value;
+
+      return list.filter(it=>{
+        const byType = (t==="all") ? true : it.type===t;
+        if(!byType) return false;
+
+        if(!query) return true;
+
+        const hay = `${it.type} #${it.id} ${it.url}`.toLowerCase();
+        // allow searching by #id or id
+        return hay.includes(query);
+      });
+    }
+
+    function applySort(list){
+      const mode = sort.value;
+      const copy = [...list];
+      if(mode==="id-asc") copy.sort((a,b)=>a.id-b.id);
+      if(mode==="id-desc") copy.sort((a,b)=>b.id-a.id);
+      if(mode==="type-asc") copy.sort((a,b)=>a.type.localeCompare(b.type) || a.id-b.id);
+      if(mode==="type-desc") copy.sort((a,b)=>b.type.localeCompare(a.type) || a.id-b.id);
+      return copy;
+    }
+
+    function setViewMode(){
+      if(view.value==="list"){
+        grid.style.gridTemplateColumns = "1fr";
+      }else{
+        // let CSS media queries handle columns; reset inline
+        grid.style.gridTemplateColumns = "";
+      }
+    }
+
+    function card(it){
+      const badgeClass = it.type.toLowerCase();
+      const name = `${it.type} #${it.id}`;
+      const url = it.url;
+
+      const el = document.createElement("article");
+      el.className = "card";
+      el.innerHTML = `
+        <div class="cardTop">
+          <div>
+            <div class="name">${name}</div>
+            <div class="muted">${new URL(url).host}</div>
+          </div>
+          <div class="badge ${badgeClass}">${it.type}</div>
+        </div>
+        <div class="muted" style="word-break:break-all">${url}</div>
+        <div class="actions">
+          <a class="btn primary" href="${url}" target="_blank" rel="noopener">Open</a>
+          <button class="btn small" data-copy>Copy link</button>
+        </div>
+      `;
+      el.querySelector("[data-copy]").onclick = async () => {
+        try{
+          await navigator.clipboard.writeText(url);
+          const b = el.querySelector("[data-copy]");
+          const old = b.textContent;
+          b.textContent = "Copied ✓";
+          setTimeout(()=> b.textContent = old, 900);
+        }catch(e){
+          alert("Copy failed. Your browser blocked clipboard.");
+        }
+      };
+      return el;
+    }
+
+    function refresh(){
+      // sync chips active state
+      buildChips();
+      setViewMode();
+
+      const filtered = applyFilters(items);
+      const sorted = applySort(filtered);
+
+      grid.innerHTML = "";
+      sorted.forEach(it => grid.appendChild(card(it)));
+
+      count.textContent = `${sorted.length} / ${items.length} items`;
+      empty.style.display = sorted.length ? "none" : "block";
+    }
+
+    // events
+    [q,type,sort,view].forEach(el => el.addEventListener("input", refresh));
+    document.addEventListener("keydown", (e)=>{
+      if(e.key === "/" && document.activeElement !== q){
+        e.preventDefault();
+        q.focus();
+      }
+    });
+
+    // init
+    refresh();
+  </script>
+</body>
+</html>
